@@ -20,3 +20,6 @@ jobs:
 
     - name: install specklesnake
       run: pip install numpy
+
+    - name: run tests
+      run: pytest
