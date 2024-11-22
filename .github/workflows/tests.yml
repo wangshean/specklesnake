@@ -25,7 +25,7 @@ jobs:
           - {name: Development Versions, python: '3.9', tox: py-dev}
     steps:
     - name: checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@5aecf626d8b46b9511252235643775564f362ea5
 
     - name: install specklesnake
       run: pip install numpy
