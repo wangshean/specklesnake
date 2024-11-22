@@ -25,7 +25,7 @@ jobs:
           - {name: Development Versions, python: '3.9', tox: py-dev}
     steps:
     - name: checkout
-      uses: actions/checkout
+      uses: actions/checkout@v2
 
     - name: install specklesnake
       run: |
