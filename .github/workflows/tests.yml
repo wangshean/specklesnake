@@ -25,10 +25,7 @@ jobs:
           - {name: Development Versions, python: '3.9', tox: py-dev}
     steps:
     - name: checkout
-      uses: actions/checkout@v2
-    
-    - name: setup python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+      uses: actions/checkout
 
     - name: install specklesnake
       run: |
