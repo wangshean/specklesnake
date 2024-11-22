@@ -28,10 +28,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: install specklesnake
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install -e .
+      run: pip install numpy
 
     - name: run tests
       run: pytest
