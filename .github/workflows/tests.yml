@@ -23,7 +23,7 @@ jobs:
           - {name: PyPy, python: 'pypy-3.10', tox: pypy310}
     steps:
     - name: checkout
-      uses: actions/checkout@5aecf626d8b46b9511252235643775564f362ea5
+      uses: actions/checkout@v2
 
     - name: install specklesnake
       run: pip install numpy
