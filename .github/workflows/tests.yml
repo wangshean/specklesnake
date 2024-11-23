@@ -14,16 +14,12 @@ jobs:
       matrix:
         include:
           - {python: '3.13'}
-          - {python: '3.12'}
           - {name: Windows, python: '3.12', os: windows-latest}
     steps:
     - name: checkout
       uses: actions/checkout@v2
 
-    - name: install specklesnake
-      run: |
-        pip install numpy
-        pip install pytest
+    - run: pip install numpy
+    - run: pip install pytest
 
-    - name: run tests
-      run: pytest
+    - run: pytest
