@@ -238,65 +238,7 @@ class BSplineSurface:
         derivs : array
             Array of points and derivatives at specified knot
         """
-        u = float(u)
-        v = float(v)
-
-        if not validate_knot(u):
-            raise ValueError('u parameter must be in interval [0, 1]')
-        if not validate_knot(v):
-            raise ValueError('v parameter must be in interval [0, 1]')
-
-        max_order_u = min(order_u, self._degree_u)
-        max_order_v = min(order_v, self._degree_v)
-
-        u_span = find_span(self._num_control_points_u, self._degree_u, u,
-                           self._knot_vector_u)
-        v_span = find_span(self._num_control_points_v, self._degree_v, v,
-                           self._knot_vector_v)
-
-        basis_funs_u_ders = basis_function_ders(u_span, u, self._degree_u,
-                                                self._knot_vector_u,
-                                                max_order_u)
-        basis_funs_v_ders = basis_function_ders(v_span, v, self._degree_v,
-                                                self._knot_vector_v,
-                                                max_order_v)
-
-        ctrlpt_x = self._control_points[:, 0]
-        ctrlpt_y = self._control_points[:, 1]
-
-        new_shape = (self._num_control_points_u, self._num_control_points_v)
-        x_array = np.reshape(ctrlpt_x, new_shape)
-        y_array = np.reshape(ctrlpt_y, new_shape)
-
-        u_start, u_stop = u_span - self._degree_u, u_span + 1
-        v_start, v_stop = v_span - self._degree_v, v_span + 1
-        x_active = x_array[u_start:u_stop, v_start:v_stop]
-        y_active = y_array[u_start:u_stop, v_start:v_stop]
-
-        derivs = np.zeros(((max_order_u + 1) * (max_order_v + 1), 2))
-
-        index = 0
-        for u_row in range(0, max_order_u + 1):
-            u_ders = basis_funs_u_ders[:, u_row]
-            for v_row in range(0, max_order_v + 1):
-
-                v_ders = basis_funs_v_ders[:, v_row]
-                x = u_ders @ x_active @ v_ders
-                y = u_ders @ y_active @ v_ders
-
-                val = np.array([x, y])
-
-                condition = (normalize and
-                             not np.isclose(np.linalg.norm(val), 0.0) and
-                             index != 0)
-                if condition:
-                    val = val / np.linalg.norm(val)
-
-                derivs[index, :] = val
-
-                index += 1
-
-        return derivs
+        return None
 
     def _check_knot_vector(self, kv, direction='u'):
         """ Check that knot vector is valid
